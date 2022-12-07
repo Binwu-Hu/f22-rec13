@@ -36,9 +36,11 @@ public class DesignPatternsInJava {
         Map<String, String> map = new HashMap<>();
         map.put("course name", "15214");
         map.put("grade", "A+");
+        // decorator here: another layer
         Map<String, String> synMap = Collections.synchronizedMap(map);
         System.out.println(synMap.get("course name"));
         System.out.println(synMap.get("grade"));
+        // factory pattern: lots of object; need to new an object by calling its name/id
     }
 
     public static void pattern2() {
@@ -64,6 +66,7 @@ public class DesignPatternsInJava {
                 return o1.charAt(0) - o2.charAt(0);
             }
         };
+        // by changing the sorting logic by changing the comparator
         List<String> list = new ArrayList<>(List.of("Harry", "Hagrid", "Hermione", "Ron"));
         Collections.sort(list, comparator1);
         System.out.println(list);
@@ -84,6 +87,10 @@ public class DesignPatternsInJava {
          * please refer to Effective Java(3rd) item 1 for static factory method.
          * please refer to item 2 for detailed discussion of builder pattern.
          */
+        // DIFFERENCE
+        // FACTORY: can build lots of things
+        // BUILDER: put lots of things into the pattern but can only buid one thing
+
         StringBuilder builder = new StringBuilder();
         builder.append("This").append(" ").append("is ").append(17514);
         String str1 = builder.substring(8);
@@ -92,6 +99,7 @@ public class DesignPatternsInJava {
         System.out.println(str2);
 
         // different ways to build the string, BigInteger
+        // static factory: different input - difference things generated
         String str3 = String.format("I am %s years old", 23);
         String str4 = String.valueOf(17514);
     }
@@ -108,6 +116,8 @@ public class DesignPatternsInJava {
          *
          * Pattern: singleton pattern
          */
+        // no matter how many time call runtime/emptyMap/emptyList, only get one result
+        // make sure all the users calling the object get the same result
         Runtime runtime = Runtime.getRuntime();
         Map<String, Integer> emptyMap = Collections.emptyMap();
         List<String> emptyList = Collections.emptyList();
@@ -121,6 +131,7 @@ public class DesignPatternsInJava {
          *
          * Pattern: adaptor pattern
          */
+        // adaptor: just like a translator, translate to same interface that they can use to communicate
         List<Integer> list1 = Arrays.asList(2020, 2022);
         List<String> list3 = Arrays.asList("Malfoy", "Snap");
     }
